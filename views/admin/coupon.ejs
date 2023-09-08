@@ -1,0 +1,74 @@
+<%- include('../layouts/adminHeader.ejs') -%>
+<!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">All Coupons</h6>
+                        
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                
+                                    <th scope="col">Coupon Code</th>
+                                    <th scope="col">Discount</th>
+                                    <th scope="col">Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                if(coupon.length>0){
+                                    for(let i=0;i<coupon.length;i++){
+                                    %>
+                                    <tr>
+                                    <td><%= coupon[i].name %></td>
+                                    <td><%= coupon[i].discount %></td>
+                                    <td>
+                                    <a href="/admin/dashboard/coupon/edit-coupon?id=<%= coupon[i]._id %>" style="margin-right: 10px;">Edit</a>
+                                    <a href="/admin/dashboard/coupon/delete-coupon?id=<%= coupon[i]._id %>">Delete</a>
+                                    </td>
+                                    </tr>
+                                    <%
+                                     }
+                                 }
+                                else{
+                                    %>  
+                                    <tr>
+                                    <td colspan="5">no coupon found</td>
+                                    </tr> 
+                                    <%
+                                    }
+                                    %>
+                                
+                            </tbody>
+                        </table>
+
+                                
+                    </div>
+                </div>
+            </div>
+            
+            <a class="btn btn-sm btn-primary m-3" href="/admin/addcoupon">Add Coupon</a></td>
+            <a class="btn btn-sm btn-primary m-3" href="/admin/dashboard">Back</a></td>
+          
+
+  
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

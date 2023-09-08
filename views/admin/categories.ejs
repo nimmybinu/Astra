@@ -1,0 +1,72 @@
+<%- include('../layouts/adminHeader.ejs') -%>
+<!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">All Categories</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col">Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                if(category.length>0){
+                                    for(let i=0;i<category.length;i++){
+                                    %>
+                                    <tr>
+                                    <td><%= category[i].name %></td>
+                                    <td>
+                                    <a href="/admin/dashboard/categories/edit-category?id=<%= category[i]._id %>" style="margin-right: 10px;">Edit</a>
+                                    <a href="/admin/dashboard/categories/delete-category?id=<%= category[i]._id %>" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                                    </td>
+                                    </tr>
+                                    <%
+                                     }
+                                 }
+                                else{
+                                    %>  
+                                    <tr>
+                                    <td colspan="5">no categories found</td>
+                                    </tr> 
+                                    <%
+                                    }
+                                    %>
+                                
+                            </tbody>
+                        </table>
+
+                                
+                    </div>
+                </div>
+            </div>
+            
+            <a class="btn btn-sm btn-primary m-3" href="/admin/dashboard/categories/add-category">Add Category</a></td>
+            <a class="btn btn-sm btn-primary m-3" href="/admin/dashboard">Back</a></td>
+          
+
+          
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

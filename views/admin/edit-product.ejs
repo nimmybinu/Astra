@@ -1,0 +1,94 @@
+<%- include('../layouts/adminHeader.ejs') -%>
+<!-- Recent Sales Start -->
+<div class="col-sm-12 col-xl-6">
+                
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Edit Product</h6>
+        <form action="" method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input type="text" name="pdtID" class="form-control" id="floatingInput"
+            value="<%= pdt.pdtID %>" required>
+            <label for="floatingInput">productId</label>
+           
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="title" class="form-control" id="floatingPassword"
+            value="<%= pdt.title %>" required>
+            <label for="floatingPassword">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="desc" class="form-control" id="floatingdesc"
+                placeholder="Enter Description" value="<%= pdt.desc %>" required>
+            <label for="floatingdesc">Description</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="price" class="form-control" id="floatingPrice"
+                placeholder="Enter price" value="<%= pdt.price %>"  required>
+            <label for="floatingPrice">Price</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="saleprice" class="form-control" id="floatingSalePrice"
+                placeholder="Enter saleprice" value="<%= pdt.saleprice %>" required>
+            <label for="floatingSalePrice">SalePrice</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="category" class="form-control" id="floatingCategory"
+                placeholder="Enter category" value="<%= pdt.category %>" required>
+            <label for="floatingCategory">Category</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="stock" class="form-control" id="floatingStock"
+                placeholder="Enter stock" value="<%= pdt.stock %>" required>
+            <label for="floatingStock">Stock</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="size" class="form-control" id="floatingSize"
+                placeholder="Enter size" value="<%= pdt.size %>" required>
+            <label for="floatingSize">Size</label>
+        </div>
+        <!-- <div class="form-floating mb-3">
+            <img src="http://localhost:3008/userImages/<%= pdt.image[0] %>" alt="Current Image" width="50">
+            <input type="file" name="files" class="form-control" id="floatingImage"
+                placeholder="Enter size"  required accept="image/*" multiple>
+            <label for="floatingImage">Image</label>
+        </div> -->
+        <input type="hidden" name="id" value="<%= pdt._id %>" >
+        <button class="btn btn-sm btn-primary" type="submit" value="Edit Product">Edit Product</button>
+
+        
+    </div>
+</div>
+<!-- Recent Sales End -->
+
+<a class="btn btn-sm btn-primary" href="/admin/dashboard/products">Back</a></td>
+
+
+<!-- Footer Start -->
+<!-- <div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded-top p-4">
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center text-sm-start">
+                &copy; <a href="#">Astra</a>, All Right Reserved. 
+            </div>
+           
+        </div>
+    </div>
+</div> -->
+<!-- Footer End -->
+</div>
+<!-- Content End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
+
+</html>

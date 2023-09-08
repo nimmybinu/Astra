@@ -1,0 +1,156 @@
+<%- include('../layouts/header.ejs') -%>
+
+<link href="css/order.css" rel="stylesheet">
+<body>
+    
+    <div class="table-container">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Order Status</th>
+                                <th>Action</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%if(orders.length<=0){%>
+                                <h1 style="color: red;">No orders </h1>
+                                <%}else{%>
+                                    
+                                    <% orders.forEach(order => { %>
+                                    <% if(order.flag=="paid"){ %>
+                                    <% order.items.forEach(ordPrdct => { %>
+                                        <tr>
+                                        <td>
+                                        <img style="height: 100px;" src="/userImages/<%=ordPrdct.item.image[0]%>" alt="..." />
+                                        <br>
+                                        <%=ordPrdct.item.title%>
+                                        </td>
+                                        
+                                        <td >₹<%=ordPrdct.pdtprice%></td>
+                                        <td ><%=ordPrdct.quantity%></td>
+                                        <td >₹<%=ordPrdct.sub_total%></td>
+                                                
+                                        <td>
+                                            <%if(ordPrdct.status=='cancelled'){%>
+                                                <span class="fas fa-circle text-danger small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%>
+                                            <%if(ordPrdct.status=='placed'){%>
+                                                <span class="fas fa-circle text-primary small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%> 
+                                            <%if(ordPrdct.status=='shipped'){%>
+                                                <span class="fas fa-circle text-warning small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%>
+                                            <%if(ordPrdct.status=='delivered'){%>
+                                                <span class="fas fa-circle text-success small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%>
+                                            <%if(ordPrdct.status=='refund-approved'){%>
+                                                <span class="fas fa-circle text-success small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%>
+                                            <%if(ordPrdct.status=='return-denied'){%>
+                                                <span class="fas fa-circle text-danger small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%>
+                                            <%if(ordPrdct.status=='return'){%>
+                                                <span class="fas fa-circle text-danger small mr-1"></span><%=ordPrdct.status%>
+                                                <%}%>
+                                        </td>
+                                        <%if(ordPrdct.status=='cancelled'){%>
+                                            <td><a> Order Cancelled</a></td>
+                                            <%}if(ordPrdct.status=='delivered'){%>
+                                            <td> <button onclick="return_order('<%=ordPrdct.item._id%>','<%=order._id%>')" class="btn btn-danger">Return</button> </td>
+                                            <%}if(ordPrdct.status=='placed' || ordPrdct.status=='shipped'){%>
+                                            <td><a style="cursor: pointer;" onclick="cancelOrder('<%=ordPrdct.item._id%>','<%=order.orderId%>','<%=ordPrdct.quantity%>')" ><i class="fas fa-trash"></i></a></td>
+                                            <%}if(ordPrdct.status=='return'){%>
+                                            <td><a>Return request sent</a></td>
+                                            <%}%>
+                                            <%if(ordPrdct.status=='refund-approved'){%>
+                                                <td><a>Cash debited to wallet</a></td>
+                                            <%}%>
+                                            <%if(ordPrdct.status=='return-denied'){%>
+                                                <td><a>Oops!</a></td>
+                                            <%}%>   
+                                            
+                                            <td>
+                                                 
+                                              
+                                                        
+                                                        <% if(ordPrdct.status=='delivered'){ %>
+                                                        <a href="/invoice/<%= order._id %>" class="btn btn-outline-primary-2">Get Invoice</a> 
+                                                        <% } %>
+                                               
+                                            </td> 
+                                    </tr>
+                                    <%})%>
+                                    <%}%>
+                                <% }) %>
+                                
+                                <%}%>
+                                <script src="https://unpkg.com/easyinvoice/dist/easyinvoice.min.js"></script>
+                               
+                        </tbody>
+                    </table>
+    
+      </div>  
+      
+      <script>
+
+async function return_order(prdctId,orderId){
+    try{
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "you want to Return this Order!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        })
+        if (result.isConfirmed) { 
+            const response = await fetch(`http://localhost:3008/returnorder?product_id=${prdctId}&order_id=${orderId}`,{
+                method:'GET'
+            })
+            const data = await response.json()
+            alert(data.message)
+            window.location.href='/myorder'
+        }
+    } catch(err){
+        alert('server error')
+    }
+}
+
+async function cancelOrder(prdctId,ordId,qty){
+    try{
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "you want to cancel this Order!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!'
+        })
+        if (result.isConfirmed) {
+            const response = await fetch(`http://localhost:3008/cancelorder?prdctId=${prdctId}&ordId=${ordId}&qty=${qty}`,{
+                method:'DELETE'
+            })
+            const data = await response.json()
+            alert(data.message)
+            window.location.href='/myorder'
+        }
+    } catch(err){
+        alert('server error')
+    }
+}
+
+      </script>
+    
+</body>
+</html>
+
+
+<%- include('../layouts/footer.ejs') -%>

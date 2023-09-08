@@ -1,0 +1,43 @@
+<%- include('../layouts/adminHeader.ejs') -%>
+<h1 style="color: rgb(161, 127, 104);">All Users</h1>
+<!-- <a href="/admin/add-user" style="text-decoration: none; color: rgb(161, 127, 104);">Add User</a> -->
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+
+<% 
+if(users.length>0){
+    for(let i=0;i<users.length;i++){
+    %>  
+    <tbody> 
+        <tr>
+            <td><%= users[i].name %></td>
+            <td><%= users[i].email %></td>
+            <td><%= users[i].mobile %></td>
+            
+            <td>
+                <a href="/admin/block-user?id=<%= users[i]._id %>" style="margin-right: 10px;">Block</a>
+                <a href="/admin/unblock-user?id=<%= users[i]._id %>">Unblock</a>
+            </td>
+        </tr>
+        <%
+    }
+}
+else{
+%>  
+<tr>
+    <td colspan="5">no users found</td>
+</tr> 
+<%
+}
+ %>
+</tbody>
+</table>
+
+<%- include('../layouts/adminFooter.ejs') -%>

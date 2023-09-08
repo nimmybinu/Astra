@@ -1,0 +1,43 @@
+<%- include('../layouts/header.ejs') -%>
+
+
+    <style>
+        /* Add custom styles here */
+        .order-placed {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Set to 100% of viewport height */
+            background-color: #f4f4f4; /* Optional background color */
+        }
+        .order-details {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-placed">
+        <div class="order-details">
+            <h3>Thank you for your order!</h3>
+            <p>userId: <%= new_order.user %></p>
+            <p>Order ID: <%= new_order.orderId %></p>
+            <p>Total Amount: ₹ <%= new_order.total_amount %></p>
+            <p>Delivery Address: <%= address %></p>
+            <p>Thank you for your payment.</p>
+            <!-- Additional order details if needed -->
+            <a href="/shop">Back to home</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery scripts here if needed -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<%- include('../layouts/footer.ejs') -%>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verify OTP</title>
+  
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="verify">
+  <div class="container">
+    <h1>Send OTP</h1>
+    <form id="otpForm" method="post" action="/signup/verifyotp">
+      <label for="mobile">Enter OTP:</label>
+      <input type="text"  name="otp" placeholder="Enter OTP" required>
+      <button type="submit" id="sendOTPBtn">Verify OTP</button>
+    </form>
+  </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

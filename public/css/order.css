@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Center the table horizontally */
+  .table-container {
+    margin: 0 auto;
+    width: 100%; /* Adjust the width as per your preference */
+    padding: 20px; /* Add padding to create space around the table */
+    overflow-x: auto; /* Add horizontal scroll when table overflows */
+    max-height: 400px; /* Set a fixed height for the container */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Add some basic styling to the table header */
+  thead {
+    background-color: #d19c97;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style the odd rows with a different background color */
+  tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Add a hover effect on rows */
+  tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Make the table responsive on smaller screens */
+  @media screen and (max-width: 600px) {
+    th, td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    th {
+      text-align: center;
+    }
+  }
+  
